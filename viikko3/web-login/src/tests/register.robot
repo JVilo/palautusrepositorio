@@ -50,15 +50,52 @@ Register With Username That Is Already In Use
     Submit Credentials
     Register Should Fail With Message    User with username Piia already exists
 
+Login After Successful Registration
+    Set Username    Piia
+    Set Password    Piiansalasana1
+    Set Password_confirmation    Piiansalasana1
+    Submit Credentials
+    Registration Should Succeed
+    Log Out
+    Go To Login Page
+    Set Username    Piia
+    Set Password    Piiansalasana1
+    Log In
+    Login Should Succeed    
+
+Login After Failed Registration
+    Set Username    Piia
+    Set Password    Piiansalasanan1
+    Set Password_confirmation    Piiansalasana1
+    Submit Credentials
+    Go To Login
+    Set Username    Piia
+    Set Password    Piiansalasanan1
+    Log In
+    Login Should Fail With Message  Invalid username or password
+    
+
 *** Keywords ***
 Go To Register Page
     Go To  ${REGISTER_URL}
+
+Go To Login
+    Click Link    Login
 
 Registration Should Succeed
     Welcome Page Should Be Open
 
 Welcome Page Should Be Open
     Title Should Be  Welcome to Ohtu Application!
+
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
+
 Register Should Fail With Message
     [Arguments]  ${message}
     Register Page Should Be Open
@@ -69,6 +106,12 @@ Register Page Should Be Open
 
 Submit Credentials
     Click Button  Register
+
+Log In
+    Click Button    Login
+Log Out
+    Click Link    Continue to main page
+    Click Button    Logout
 
 Set Username
     [Arguments]  ${username}
