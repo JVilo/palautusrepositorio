@@ -239,5 +239,4 @@ class TestKauppa(unittest.TestCase):
 
         self.pankki_mock.tilisiirto.assert_called_with("pirkko", 30, "02468", ANY, 3)
 
-# teen muutoksia
-        
+# teen muutoksia   
