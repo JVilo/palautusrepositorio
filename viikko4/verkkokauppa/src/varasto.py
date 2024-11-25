@@ -1,5 +1,6 @@
 from tuote import Tuote
 from kirjanpito import kirjanpito as default_kirjanpito
+#some change made
 
 
 class Varasto:
